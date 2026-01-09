@@ -116,3 +116,7 @@ services:
 volumes:
   mongo_data:
   
+networks:
+  twin-net:
+    external: true
+    name: twin-net
