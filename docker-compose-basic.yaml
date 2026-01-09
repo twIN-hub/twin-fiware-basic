@@ -116,8 +116,3 @@ services:
 volumes:
   mongo_data:
   
-networks:
-  twin-net:
-    driver: bridge
-    # external: true
-    # name: twin-net
