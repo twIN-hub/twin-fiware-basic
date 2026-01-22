@@ -150,10 +150,10 @@ services:
       - /proc:/host/proc:ro
     environment:
       # Optional: Enable authentication
-      JWT_SECRET: your-super-secret-key-min-32-chars
-      ADMIN_USERNAME: admin
-      ADMIN_PASSWORD_SALT: your-random-salt-change-this
-      ADMIN_PASSWORD: your-sha256-hash
+      # JWT_SECRET: your-super-secret-key-min-32-chars
+      # ADMIN_USERNAME: admin
+      # ADMIN_PASSWORD_SALT: your-random-salt-change-this
+      # ADMIN_PASSWORD: your-sha256-hash
     restart: unless-stopped
     networks:
       - twin-net
