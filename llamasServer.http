@@ -7,7 +7,7 @@
 
 #********************* VERSIONES *****************************
 
-curl -X GET http://{{host_name_server}}:1026/version
+curl -X GET http://{{host_server}}:1026/version
 
 ###
 curl -X GET http://{{host_server}}:5080/v1/version
@@ -18,11 +18,15 @@ curl -X GET "http://{{host_name_server}}:1026/v2/subscriptions/"\
 
 ###
 ### borrar subscripcion
-DELETE "http://{{host_server}}:1026/v2/subscriptions/695f621ec4b181fc300b939b"
+curl -X DELETE "http://{{host_server}}:1026/v2/subscriptions/695f6230c4b181fc300b939c"\
+  -H "Fiware-Service: pamplona" \
+  -H "Fiware-ServicePath: /urbanmobility"
 
 
 ###
-curl -X GET "http://{{host_server}}:1026/v2/subscriptions/"
+curl -X GET "http://{{host_server}}:1026/v2/subscriptions/"\
+  -H "Fiware-Service: pamplona" \
+  -H "Fiware-ServicePath: /urbanmobility"
 ###
 
 

@@ -46,7 +46,7 @@ services:
       # PostgreSQL config
       CYGNUS_SKIP_CONF_GENERATION: 'true'
       CYGNUS_LOG_LEVEL: INFO
-      CYGNUS_POSTGRESQL_HOST: timescale
+      CYGNUS_POSTGRESQL_HOST: 172.30.188.48
       CYGNUS_POSTGRESQL_PORT: 5432
       CYGNUS_POSTGRESQL_DATABASE: pamplona
       CYGNUS_POSTGRESQL_USER: twin_admin
@@ -148,12 +148,12 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /proc:/host/proc:ro
-    # environment:
+    environment:
       # Optional: Enable authentication
-      # JWT_SECRET: your-super-secret-key-min-32-chars
-      # ADMIN_USERNAME: admin
-      # ADMIN_PASSWORD_SALT: your-random-salt-change-this
-      # ADMIN_PASSWORD: your-sha256-hash
+      JWT_SECRET: your-super-secret-key-min-32-chars
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD_SALT: your-random-salt-change-this
+      ADMIN_PASSWORD: your-sha256-hash
     restart: unless-stopped
     networks:
       - twin-net
