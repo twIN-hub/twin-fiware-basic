@@ -44,7 +44,7 @@ services:
       CYGNUS_SERVICE_PORT: 5055
       CYGNUS_POSTGRESQL_SERVICE_PORT: 5055
       # PostgreSQL config
-      CYGNUS_SKIP_CONF_GENERATION: 'true'
+      CYGNUS_SKIP_CONF_GENERATION: true
       CYGNUS_LOG_LEVEL: INFO
       CYGNUS_POSTGRESQL_HOST: timescale
       CYGNUS_POSTGRESQL_PORT: 5432
@@ -113,10 +113,54 @@ services:
     networks:
       - twin-net
 
+  fastapi:
+    hostname: fastapi
+    container_name: fastapi
+    build:
+      context: .
+      dockerfile: dockerfile_fastapi
+    # depends_on:
+    #   - postgis
+    ports:
+      - "8001:8000"
+    networks:
+      - twin-net
+  
+  nginx_server:
+    hostname: nginx
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: dockerfile_nginx
+    ports:
+      - "89:80"
+    depends_on:
+      - fastapi
+    networks:
+      - twin-net
+      
+  logdeck:
+    image: amoabakelvin/logdeck:latest
+    hostname: logdeck
+    container_name: logdeck
+    ports:
+      - "8123:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc:/host/proc:ro
+    # environment:
+      # Optional: Enable authentication
+      # JWT_SECRET: your-super-secret-key-min-32-chars
+      # ADMIN_USERNAME: admin
+      # ADMIN_PASSWORD_SALT: your-random-salt-change-this
+      # ADMIN_PASSWORD: your-sha256-hash
+    restart: unless-stopped
+    networks:
+      - twin-net
+    
 volumes:
   mongo_data:
   
 networks:
   twin-net:
-    external: true
-    name: twin-net
+    driver: bridge

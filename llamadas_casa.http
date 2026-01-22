@@ -1,9 +1,8 @@
 
 @host=localhost
 @orion_port=1026
-@host_server=172.30.188.48
 
-
+@host_server=86.127.240.151
 
 
 #********************* VERSIONES *****************************
@@ -15,32 +14,32 @@ GET http://{{host_server}}:{{orion_port}}/version
 GET http://{{host_server}}:{{orion_port}}/version
 
 ###
-GET http://{{host_server_casas}}:{{orion_port}}/version
+GET http://{{host_server}}:{{orion_port}}/version
 
 ###
 GET http://{{host_server}}:{{orion_port}}/v2/types/
 ###
-GET http://{{host}}:{{orion_port}}/v2/entities
+GET http://{{host_server}}:{{orion_port}}/v2/entities
 ###
 ###SUBSCRIPCIONES EN ORION DE CYGNUS
 ###
-curl -X GET http://{{host}}:{{orion_port}}/v2/subscriptions/ \
+curl -X GET http://{{host_server}}:{{orion_port}}/v2/subscriptions/ \
   -H "Fiware-Service: pamplona" \
   -H "Fiware-ServicePath: /urbanmobility"
 
 ###
 #VERSION IOT AGENT 
-curl -X GET "http://{{host_server}}:4041/iot/about"
+curl -X GET "http://86.127.240.151:4041/iot/about"
 ###
 
 #VERSION IOT AGENT UL
 curl -X GET "http://{{host_server}}:4061/iot/about"
 ###
 #CYGNUS VERSION
-curl -X GET http://{{host_server}}:5080/v1/version
+GET http://{{host_server}}:5080/v1/version
 ###
 
- curl -sf GET http://{{host_server}}:5080/v1/version
+ curl -sf GET 'http://{{host_server}}:5080/v1/version'
 ###
 #********************* ORION *****************************
 #ORION VERSION
@@ -53,7 +52,7 @@ curl -X GET "http://{{host_server}}:1026/v2/entities/?options=keyValues"
   -H 'fiware-servicepath:/urbanmovility ' 
 ###
 
-curl -X GET "http://localhost:1026/v2/entities"
+curl -X GET "http://{{host_server}}:1026/v2/entities"
 
 ###
 #AÑADIR ENTIDADES A ORION
@@ -116,7 +115,7 @@ curl -X POST "http://{{host_server}}:4041/iot/services" \
 
 ###
 
-curl -X POST "http://localhost:4041/iot/services" \
+curl -X POST "http://{{host_server}}:4041/iot/services" \
   -H "Content-Type: application/json" \
   -H "fiware-service: pamplona" \
   -H "fiware-servicepath: /urbanmovility" \
@@ -162,19 +161,19 @@ curl -X POST "http://{{host_server}}:4041/iot/devices" \
 ###
 
 ###RECIBIR MEDIDAS
-curl -iX POST 'http://localhost:7896/iot/json?k=jmyry5y4xzo34az90w71byics&i=Device001' \
+curl -iX POST 'http://{{host_server}}:7896/iot/json?k=jmyry5y4xzo34az90w71byics&i=Device001' \
   -H 'Content-Type: application/json' \
   -d '{"t":23,"h":55}'
 ###
 curl -iX POST \
-  'http://localhost:7896/iot/json?k=iot-json-key&i=roomparking001' \
+  'http://{{host_server}}:7896/iot/json?k=iot-json-key&i=roomparking001' \
   -H "Fiware-Service: pamplona" \
   -H "Fiware-ServicePath: /parking"
   -H 'Content-Type: application/json' \
   -d '{"t":25.5,"h":55}'
 ###
 
-curl -X GET "http://localhost:1026/v2/entities" \
+curl -X GET "http://{{host_server}}:1026/v2/entities/?options=keyValues" \
   -H "Fiware-Service: pamplona" \
   -H "Fiware-ServicePath: /urbanmovility"
 ###
@@ -360,7 +359,7 @@ curl -X GET http://{{host_server}}:1026/v2/subscriptions/ \
 
 ###SUBCRIPCION PARA POSTGRES
 
-curl -X POST 'http://{{host_server}}:1026/v2/subscriptions'\
+curl -X POST 'http://localhost:1026/v2/subscriptions'\
   -H 'Content-Type: application/json' \
   -H "Fiware-Service: pamplona" \
   -H "Fiware-ServicePath: /urbanmobility"\
@@ -375,7 +374,7 @@ curl -X POST 'http://{{host_server}}:1026/v2/subscriptions'\
     },
     "notification": {
         "http": {
-          "url": "http://cygnus:5057/notify"
+          "url": "http://cygnus:5055/notify"
         }
     },
     "throttling": 0,
