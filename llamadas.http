@@ -50,7 +50,7 @@ GET http://{{host_server}}:1026/version
  ###
 curl -X GET "http://{{host_server}}:1026/v2/entities/?options=keyValues" 
   -H 'fiware-service: pamplona' 
-  -H 'fiware-servicepath:/urbanmovility ' 
+  -H 'fiware-servicepath:/urbanmobility ' 
 ###
 
 curl -X GET "http://localhost:1026/v2/entities"
@@ -104,7 +104,7 @@ curl -X GET 'http://{{host_server}}:4041/iot/about'
 curl -X POST "http://{{host_server}}:4041/iot/services" \
   -H "Content-Type: application/json" \
   -H "fiware-service: pamplona" \
-  -H "fiware-servicepath: /urbanmovility" \
+  -H "fiware-servicepath: /urbanmobility" \
   -d '{
     "services": [{
       "apikey": "123456789abcd",
@@ -119,7 +119,7 @@ curl -X POST "http://{{host_server}}:4041/iot/services" \
 curl -X POST "http://localhost:4041/iot/services" \
   -H "Content-Type: application/json" \
   -H "fiware-service: pamplona" \
-  -H "fiware-servicepath: /urbanmovility" \
+  -H "fiware-servicepath: /urbanmobility" \
   -d '{
     "services": [{
       "apikey": "123456789abcd2",
@@ -132,7 +132,7 @@ curl -X POST "http://localhost:4041/iot/services" \
 ### saber grupos de dispositivos registrados
 curl -X GET 'http://{{host_server}}:4041/iot/services' \
   -H 'Fiware-Service: pamplona' \
-  -H 'Fiware-ServicePath: /urbanmovility'
+  -H 'Fiware-ServicePath: /urbanmobility'
 
 
 ###**********************************************************************
@@ -140,7 +140,7 @@ curl -X GET 'http://{{host_server}}:4041/iot/services' \
 curl -X POST "http://{{host_server}}:4041/iot/devices" \
   -H "Content-Type: application/json" \
   -H "fiware-service: pamplona" \
-  -H "fiware-servicepath: /urbanmovility" \
+  -H "fiware-servicepath: /urbanmobility" \
   -d '{
     "devices": [
       {
@@ -176,7 +176,7 @@ curl -iX POST \
 
 curl -X GET "http://localhost:1026/v2/entities" \
   -H "Fiware-Service: pamplona" \
-  -H "Fiware-ServicePath: /urbanmovility"
+  -H "Fiware-ServicePath: /urbanmobility"
 ###
 
 

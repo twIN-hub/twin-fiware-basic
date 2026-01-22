@@ -4,12 +4,16 @@
 
 
 
+###SABER SI EL SERVICIO ESTA FUNCIONANDO
+curl -X GET 'http://{{host_server}}:4041/iot/about'
+###
+
 
 ###CONFIGURAR DISPOSITIVOS JSON EN ORION IOTs
 curl -X POST "http://localhost:4041/iot/services" \
   -H "Content-Type: application/json" \
   -H "fiware-service: pamplona" \
-  -H "fiware-servicepath: /urbanmovility" \
+  -H "fiware-servicepath: /urbanmobility" \
   -d '{
     "services": [{
       "apikey": "123456789abcd",
@@ -90,18 +94,18 @@ curl -iX POST \
   -H 'fiware-service: pamplona' \
   -H 'fiware-servicepath: /urbanmobility' \
   -d '{
-  "description": "Notify Draco 5060 of all context changes",
+  "description": "Notify Cygnus 5055 Exterior IP 172.30.188.48",
   "subject": {
     "entities": [
       {
         "idPattern": ".*",
-        "type": "gtfsshape"
+        "type": "vehicle"
       }
     ]
   },
   "notification": {
     "http": {
-      "url": "http://cygnus:5055/notify"
+      "url": "http://172.30.188.48:5055/notify"
     }
   },
   "throttling": 0
