@@ -46,7 +46,7 @@ services:
       # PostgreSQL config
       CYGNUS_SKIP_CONF_GENERATION: 'true'
       CYGNUS_LOG_LEVEL: INFO
-      CYGNUS_POSTGRESQL_HOST: 172.30.188.48
+      CYGNUS_POSTGRESQL_HOST: twin-timescale-prod
       CYGNUS_POSTGRESQL_PORT: 5432
       CYGNUS_POSTGRESQL_DATABASE: pamplona
       CYGNUS_POSTGRESQL_USER: twin_admin
@@ -55,13 +55,13 @@ services:
       CYGNUS_POSTGRESQL_DATA_MODEL: dm-by-entity-type #dm-by-entity-type-database #dm-by-entity-type-database #dm-by-entity-type-database
       CYGNUS_POSTGRESQL_ATTR_PERSISTENCE: column
       
-      CYGNUS_MYSQL_HOST : mysql
-      CYGNUS_MYSQL_DB : orion
-      CYGNUS_MYSQL_PORT : 3306
-      CYGNUS_MYSQL_USER : root
-      CYGNUS_MYSQL_PASS : 6447
-      CYGNUS_MYSQL_DATA_MODEL : dm-by-entity-type
-      CYGNUS_MYSQL_ATTR_PERSISTENCE: column
+      # CYGNUS_MYSQL_HOST : mysql
+      # CYGNUS_MYSQL_DB : orion
+      # CYGNUS_MYSQL_PORT : 3306
+      # CYGNUS_MYSQL_USER : root
+      # CYGNUS_MYSQL_PASS : 6447
+      # CYGNUS_MYSQL_DATA_MODEL : dm-by-entity-type
+      # CYGNUS_MYSQL_ATTR_PERSISTENCE: column
       # CYGNUS_MYSQL_SERVICE_PORT : 5050
     volumes:
       - ./cygnus/agent.conf:/opt/apache-flume/conf/agent.conf
